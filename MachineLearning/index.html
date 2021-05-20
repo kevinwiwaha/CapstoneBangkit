@@ -1,0 +1,25 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+</head>
+<body>
+    <img src="./mangga.jpg" id="image" alt="">
+    <script src="app.js"></script>
+    <script>
+        
+        const model = tf.loadLayersModel('./json-model/model.json')
+        model.then(res=>{
+            loadImageData().then(response=>{
+                let data = res.predict(response)
+                data.data().then(val => {
+                    console.log(val[0])
+                })
+            })
+        })
+    </script>
+</body>
+</html>
