@@ -21,6 +21,17 @@ from tensorflow import keras
 #from tensorflow import keras
 import os
 
+
+class myCallback(tf.keras.callbacks.Callback):
+
+    def on_epoch_end(self, epoch, logs={}):
+        ACCURACY_THRESHOLD = 0.995
+        if(logs.get('acc') > ACCURACY_THRESHOLD):
+            print("\nReached %2.2f%% accuracy, so stopping training!!" %
+                  (ACCURACY_THRESHOLD*100))
+            self.model.stop_training = True
+
+
 # Import Mobilenet
 mobile = tf.keras.applications.mobilenet.MobileNet()
 print(mobile.summary())
@@ -33,30 +44,32 @@ for i in model.layers[:-5]:
     i.trainable = False
 
 # Image Data Generator
-train_datagen=tf.keras.preprocessing.image.ImageDataGenerator(preprocessing_function=tf.keras.applications.mobilenet.preprocess_input) 
-train_generator=train_datagen.flow_from_directory('./DATASET/TRAIN', 
-                                                 target_size=(224,224),
-                                                 color_mode='rgb',
-                                                 batch_size=120,
-                                                 class_mode='binary',
-                                                 shuffle=True)
-                                                
+train_datagen = tf.keras.preprocessing.image.ImageDataGenerator(
+    preprocessing_function=tf.keras.applications.mobilenet.preprocess_input)
+train_generator = train_datagen.flow_from_directory('./DATASET/TRAIN',
+                                                    target_size=(224, 224),
+                                                    color_mode='rgb',
+                                                    batch_size=120,
+                                                    class_mode='binary',
+                                                    shuffle=True)
+
 test_datagen = tf.keras.preprocessing.image.ImageDataGenerator(rescale=1./255)
 validation_generator = test_datagen.flow_from_directory(
-                                                        './DATASET/TEST',
-                                                        target_size=(150, 150),
-                                                        batch_size=32,
-                                                        class_mode='binary')
+    './DATASET/TEST',
+    target_size=(150, 150),
+    batch_size=32,
+    class_mode='binary')
 
 # Compile Model
 model.compile(loss='binary_crossentropy',
               optimizer=tf.keras.optimizers.RMSprop(lr=1e-4),
               metrics=['accuracy'])
 # Fitting Model
-step_size_train=train_generator.n//train_generator.batch_size
-model.fit_generator(train_generator,steps_per_epoch=step_size_train,epochs=100)
+callbacks = myCallback()
+step_size_train = train_generator.n//train_generator.batch_size
+model.fit_generator(
+    train_generator, steps_per_epoch=step_size_train, epochs=100, callbacks=[callbacks])
 
 # Saving Model
 model.save_weights("./model/model_weights-test.h5")
 model.save('./model/model-test.h5')
-
