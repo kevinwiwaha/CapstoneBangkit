@@ -1,5 +1,4 @@
 from flask import Flask, request
-from keras.preprocessing import image
 import tensorflow as tf
 import os
 import json
@@ -13,14 +12,14 @@ model = tf.keras.models.load_model('./model/model-test.h5')
 
 @app.route("/")
 def hello_world():
-    return "bangkit ayo"
+    return "bangkit ayos"
 
 
 @app.route("/predict", methods=['POST'])
 def predict():
     file = '../Model/images/laptop.jpg'
-    img = image.load_img(file, target_size=(224, 224))
-    x = image.img_to_array(img)
+    img = tf.keras.preprocessing.image.load_img(file, target_size=(224, 224))
+    x = tf.keras.preprocessing.image.img_to_array(img)
     x = np.expand_dims(x, axis=0)
     images = np.vstack([x])
     history = model.predict(images)
