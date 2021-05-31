@@ -5,12 +5,16 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.example.imagerecog.ml.Model
+import com.example.imagerecog.repository.Repository
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
@@ -20,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     //declare the variables
     lateinit var bitmap: Bitmap
     lateinit var imgview: ImageView
-
+    private lateinit var viewModel: MainViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,31 +63,44 @@ class MainActivity : AppCompatActivity() {
         var predict:Button = findViewById(R.id.button2)
 
         predict.setOnClickListener(View.OnClickListener {
-            // pertama, resize the bitmap
-            var resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-            val model = Model.newInstance(this)
-
-            // Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
-
-            //create bytebuffer from these resize images
-
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
-            inputFeature0.loadBuffer(byteBuffer)
+            Log.i("HE","INFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
+//            // pertama, resize the bitmap
+//            var resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
+//            val model = Model.newInstance(this)
+//
+//            // Creates inputs for reference.
+//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 200, 200, 3), DataType.FLOAT32)
+//
+//            //create bytebuffer from these resize images
+//
+//            var tbuffer = TensorImage.fromBitmap(resized)
+//            var byteBuffer = tbuffer.buffer
+//
+//            inputFeature0.loadBuffer(byteBuffer)
 
             // Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
+//            val outputs = model.process(inputFeature0)
             //output feature0 is our output prediction
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
             /* to convert output feature to string,
             first, convert to float array and select one index
              */
 
-            tv.setText(outputFeature0.floatArray[10].toString())
+//            tv.setText(outputFeature0.floatArray[10].toString())
+
 
             // Releases model resources if no longer used.
-            model.close()
+//            model.close()
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+            viewModel.getPost()
+            viewModel.myResponse.observe(this, Observer { response ->
+                Log.d("Response",response.userId.toString())
+                Log.d("Response",response.id.toString())
+                Log.d("Response",response.body.toString())
+
+            })
         })
     }
     // we will see, once the user select the images, change the image view, to the selected

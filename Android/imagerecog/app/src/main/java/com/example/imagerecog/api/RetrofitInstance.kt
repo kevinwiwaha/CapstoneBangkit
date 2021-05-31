@@ -1,6 +1,6 @@
-package com.example.imagerecog.api
+package com.example.retrofitdemo.api
 
-import com.example.imagerecog.util.Constant.Companion.BASE_URL
+import com.example.imagerecog.utils.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -12,7 +12,9 @@ object RetrofitInstance {
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
+
     val api: SimpleApi by lazy {
         retrofit.create(SimpleApi::class.java)
     }
+
 }
