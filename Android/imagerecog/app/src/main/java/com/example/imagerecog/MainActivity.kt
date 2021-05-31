@@ -79,6 +79,7 @@ class MainActivity : AppCompatActivity() {
             /* to convert output feature to string,
             first, convert to float array and select one index
              */
+
             tv.setText(outputFeature0.floatArray[10].toString())
 
             // Releases model resources if no longer used.
