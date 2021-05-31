@@ -27,6 +27,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_main)
+        // bikin button buat connect ke next activity
+        val button_belajar = findViewById<Button>(R.id.button3)
+        button_belajar.setOnClickListener {
+            val next_intent = Intent(this, MainActivity2::class.java)
+
+            startActivity(next_intent)
+        }
         //inisialisasi variabelnya imgview ke findViewByid terus kita search
         // resources.id.imageview
         imgview = findViewById(R.id.imageView)
