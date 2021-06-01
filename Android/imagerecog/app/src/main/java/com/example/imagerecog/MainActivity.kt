@@ -13,19 +13,22 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.imagerecog.ml.MobilenetV110224Quant
+import com.example.imagerecog.ml.MobilenetV210224Quant
 import com.example.imagerecog.ml.Model
 import com.example.imagerecog.repository.Repository
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.nio.ByteBuffer
 
 
 class MainActivity : AppCompatActivity() {
     //declare the variables
     lateinit var bitmap: Bitmap
     lateinit var imgview: ImageView
+    lateinit var text_view : TextView
     private lateinit var viewModel: MainViewModel
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +44,11 @@ class MainActivity : AppCompatActivity() {
         //inisialisasi variabelnya imgview ke findViewByid terus kita search
         // resources.id.imageview
         imgview = findViewById(R.id.imageView)
+//            val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
 
         //initialize textview
         var tv:TextView = findViewById(R.id.textView)
-
+        text_view = findViewById(R.id.textView)
 
 
         // Get button using its id :
@@ -63,45 +67,51 @@ class MainActivity : AppCompatActivity() {
         var predict:Button = findViewById(R.id.button2)
 
         predict.setOnClickListener(View.OnClickListener {
-            Log.i("HE","INFOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO")
-//            // pertama, resize the bitmap
-//            var resized: Bitmap = Bitmap.createScaledBitmap(bitmap, 224, 224, true)
-//            val model = Model.newInstance(this)
-//
-//            // Creates inputs for reference.
-//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 200, 200, 3), DataType.FLOAT32)
-//
-//            //create bytebuffer from these resize images
-//
-//            var tbuffer = TensorImage.fromBitmap(resized)
-//            var byteBuffer = tbuffer.buffer
-//
-//            inputFeature0.loadBuffer(byteBuffer)
+            var resized = Bitmap.createScaledBitmap(bitmap, 224*2, 224*2, true)
+//            val model = MobilenetV110224Quant.newInstance(this)
+            val model = Model.newInstance(this)
+//            val model = MobilenetV210224Quant.newInstance(this)
+            var tbuffer = TensorImage.fromBitmap(resized)
+            var byteBuffer = tbuffer.buffer
 
-            // Runs model inference and gets result.
-//            val outputs = model.process(inputFeature0)
-            //output feature0 is our output prediction
-//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-            /* to convert output feature to string,
-            first, convert to float array and select one index
-             */
+// Creates inputs for reference.
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224*2, 224*2, 3), DataType.UINT8)
+            inputFeature0.loadBuffer(byteBuffer)
+            Log.d("Tensor",inputFeature0.buffer.toString())
+// Runs model inference and gets result.
+            val outputs = model.process(inputFeature0)
+            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
 
-//            tv.setText(outputFeature0.floatArray[10].toString())
+            println(outputFeature0.floatArray[0])
+//            var max = getMax(outputFeature0.floatArray)
+//            Log.d("MAX",max.toString())
+            if(outputFeature0.floatArray[0] > 0.5){
+                var result = "Ini sampah anorganik"
+                text_view.setText(result)
 
+            }else if(outputFeature0.floatArray[0] < 0.5){
+                var result = "Ini sampah organik"
+                text_view.setText(result)
 
-            // Releases model resources if no longer used.
-//            model.close()
-            val repository = Repository()
-            val viewModelFactory = MainViewModelFactory(repository)
-            viewModel = ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
-            viewModel.getPost()
-            viewModel.myResponse.observe(this, Observer { response ->
-                Log.d("Response",response.userId.toString())
-                Log.d("Response",response.id.toString())
-                Log.d("Response",response.body.toString())
+            }
 
-            })
+// Releases model resources if no longer used.
+            model.close()
         })
+    }
+    fun getMax(arr:FloatArray) : Int{
+        var ind = 0;
+        var min = 0.0f;
+
+        for(i in 0..1000)
+        {
+            if(arr[i] > min)
+            {
+                min = arr[i]
+                ind = i;
+            }
+        }
+        return ind
     }
     // we will see, once the user select the images, change the image view, to the selected
     //  images
