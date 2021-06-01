@@ -15,8 +15,8 @@
 <!--        <activity android:name=".MainActivity3" >-->
 <!--        </activity>-->
         <activity android:name=".MainActivity2" />
-        <activity android:name=".Activity2" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.MaterialComponents.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

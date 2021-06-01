@@ -86,11 +86,11 @@ class MainActivity : AppCompatActivity() {
 //            var max = getMax(outputFeature0.floatArray)
 //            Log.d("MAX",max.toString())
             if(outputFeature0.floatArray[0] > 0.5){
-                var result = "Ini sampah anorganik"
+                var result = "Anorganik"
                 text_view.setText(result)
 
             }else if(outputFeature0.floatArray[0] < 0.5){
-                var result = "Ini sampah organik"
+                var result = "Organik"
                 text_view.setText(result)
 
             }
