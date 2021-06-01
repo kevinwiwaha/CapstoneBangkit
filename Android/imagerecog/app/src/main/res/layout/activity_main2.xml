@@ -15,8 +15,7 @@
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="169dp"
-        android:text="test aja" />
+        android:layout_height="169dp" />
 
 
 </LinearLayout>

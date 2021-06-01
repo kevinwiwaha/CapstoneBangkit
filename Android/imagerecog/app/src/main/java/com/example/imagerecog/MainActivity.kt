@@ -88,6 +88,9 @@ class MainActivity : AppCompatActivity() {
             if(outputFeature0.floatArray[0] > 0.5){
                 var result = "Anorganik"
                 text_view.setText(result)
+                val resultData = Intent(this@MainActivity,MainActivity2::class.java)
+                resultData.putExtra("WasteType",result)
+                startActivity(resultData)
 
             }else if(outputFeature0.floatArray[0] < 0.5){
                 var result = "Organik"

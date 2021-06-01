@@ -2,6 +2,7 @@ package com.example.imagerecog
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -15,10 +16,15 @@ class MainActivity2 : YouTubeBaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        val wasteType=intent.getStringExtra("WasteType")
+        Log.i("WASTE",wasteType.toString())
+        if(wasteType.toString() == "Anorganik"){
+            initializePlayer(getYoutubeVideoIdFromUrl("https://www.youtube.com/embed/KQWYvpssvyY")!!)
+        }else{
+            initializePlayer(getYoutubeVideoIdFromUrl("https://www.youtube.com/embed/8jC8krdIjus")!!)
+        }
 
-        initializePlayer(getYoutubeVideoIdFromUrl("https://www.youtube.com/embed/KQWYvpssvyY")!!)
-
-        //bikin action bar buat yang atas
+        
 
 
     }
