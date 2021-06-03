@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Base64
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -16,11 +17,15 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.imagerecog.ml.MobilenetV110224Quant
 import com.example.imagerecog.ml.MobilenetV210224Quant
 import com.example.imagerecog.ml.Model
+import com.example.imagerecog.model.Post
 import com.example.imagerecog.repository.Repository
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.image.TensorImage
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
@@ -67,39 +72,76 @@ class MainActivity : AppCompatActivity() {
         var predict:Button = findViewById(R.id.button2)
 
         predict.setOnClickListener(View.OnClickListener {
-            var resized = Bitmap.createScaledBitmap(bitmap, 224*2, 224*2, true)
+            var resized = Bitmap.createScaledBitmap(bitmap, 200, 200, true)
 //            val model = MobilenetV110224Quant.newInstance(this)
             val model = Model.newInstance(this)
 //            val model = MobilenetV210224Quant.newInstance(this)
             var tbuffer = TensorImage.fromBitmap(resized)
             var byteBuffer = tbuffer.buffer
 
-// Creates inputs for reference.
-            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224*2, 224*2, 3), DataType.UINT8)
-            inputFeature0.loadBuffer(byteBuffer)
-            Log.d("Tensor",inputFeature0.buffer.toString())
-// Runs model inference and gets result.
-            val outputs = model.process(inputFeature0)
-            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+//// Creates inputs for reference.
+//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224*2, 224*2, 3), DataType.UINT8)
+//            inputFeature0.loadBuffer(byteBuffer)
+//            Log.d("Tensor",inputFeature0.buffer.toString())
+//// Runs model inference and gets result.
+//            val outputs = model.process(inputFeature0)
+//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+//
+//            println(outputFeature0.floatArray[0])
+////            var max = getMax(outputFeature0.floatArray)
+////            Log.d("MAX",max.toString())
+//            if(outputFeature0.floatArray[0] > 0.5){
+//                var result = "Anorganik"
+//                text_view.setText(result)
+//                val resultData = Intent(this@MainActivity,MainActivity2::class.java)
+//                resultData.putExtra("WasteType",result)
+//                startActivity(resultData)
+//
+//            }else if(outputFeature0.floatArray[0] < 0.5){
+//                var result = "Organik"
+//                text_view.setText(result)
+//
+//            }
+//
+//// Releases model resources if no longer used.
+//            model.close()
 
-            println(outputFeature0.floatArray[0])
-//            var max = getMax(outputFeature0.floatArray)
-//            Log.d("MAX",max.toString())
-            if(outputFeature0.floatArray[0] > 0.5){
+//            RESIZED IMAGE ENCODE BASE64
+            val byteArrayOutputStream = ByteArrayOutputStream()
+            resized.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
+            val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
+            val encoded: String = Base64.encodeToString(byteArray,Base64.DEFAULT)
+
+//            Datetime
+            val currentDateTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.BASIC_ISO_DATE
+            val formatted = currentDateTime.format(formatter)
+
+//            HTTP REQUEST
+            val repository = Repository()
+            val viewModelFactory = MainViewModelFactory(repository)
+            viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+            val myPost = Post(2,5,formatted,encoded)
+            viewModel.pushPost(2,5,formatted,encoded)
+            viewModel.myResponse.observe(this, Observer { response ->
+                Log.i("Pred",response.body)
+                if(response.body.toFloat() > 0.5){
                 var result = "Anorganik"
                 text_view.setText(result)
                 val resultData = Intent(this@MainActivity,MainActivity2::class.java)
-                resultData.putExtra("WasteType",result)
-                startActivity(resultData)
+                    resultData.putExtra("WasteType",result)
 
-            }else if(outputFeature0.floatArray[0] < 0.5){
-                var result = "Organik"
-                text_view.setText(result)
 
-            }
+                }else if(response.body.toFloat() < 0.5){
+                    var result = "Organik"
+                    text_view.setText(result)
+                    val resultData = Intent(this@MainActivity,MainActivity2::class.java)
+                    resultData.putExtra("WasteType",result)
 
-// Releases model resources if no longer used.
-            model.close()
+                }
+
+            })
+
         })
     }
     fun getMax(arr:FloatArray) : Int{

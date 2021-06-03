@@ -10,6 +10,9 @@ class Repository {
         return RetrofitInstance.api.getPost()
     }
 
+    suspend fun pushPost(useId:Int,id:Int,title:String,body:String): Post{
+        return RetrofitInstance.api.pushPost(useId,id,title,body)
+    }
 
 
 }

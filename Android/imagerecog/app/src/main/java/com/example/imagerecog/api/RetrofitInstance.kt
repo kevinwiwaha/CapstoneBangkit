@@ -8,7 +8,7 @@ object RetrofitInstance {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("http://38c1494c3c0a.ngrok.io")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
