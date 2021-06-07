@@ -231,12 +231,17 @@ class MainActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 //        var uri: Uri?= data?.data
 
-        if (requestCode == 10 && resultCode == RESULT_OK) {
+        if (requestCode == 101 && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
 //            var uri: Uri?= data?.data
             imgview.setImageBitmap(imageBitmap)
             bitmap = imageBitmap
+        } else if(requestCode == 100) {
+            imgview.setImageURI(data?.data)
+            var uri: Uri?= data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
         }
+
 
 
 //        if(requestCode == 101 )
