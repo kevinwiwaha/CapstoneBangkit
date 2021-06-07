@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
 
 //            RESIZED IMAGE ENCODE BASE64
             val byteArrayOutputStream = ByteArrayOutputStream()
-            resized.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
             val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
             val encoded: String = Base64.encodeToString(byteArray,Base64.DEFAULT)
 
@@ -208,6 +208,7 @@ class MainActivity : AppCompatActivity() {
 //        startActivityForResult(i, 101)
 //    }
 
+
     var button_camera: Button? = null
 
     override fun onRequestPermissionsResult(
@@ -229,20 +230,29 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 //        var uri: Uri?= data?.data
-        if(requestCode == 101 )
-        {
-            imgview.setImageURI(data?.data)
-            var uri: Uri?= data?.data
-//            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
 
-
-        }else if(requestCode == 100){
-            imgview.setImageURI(data?.data)
-            var uri: Uri?= data?.data
-            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
-
-
+        if (requestCode == 10 && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+//            var uri: Uri?= data?.data
+            imgview.setImageBitmap(imageBitmap)
+            bitmap = imageBitmap
         }
+
+
+//        if(requestCode == 101 )
+//        {
+//            imgview.setImageURI(data?.data)
+//            var uri: Uri?= data?.data
+////            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//
+//
+//        }else if(requestCode == 100){
+//            imgview.setImageURI(data?.data)
+//            var uri: Uri?= data?.data
+//            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//
+//
+//        }
 
         /* we will store this image to the bitmap, so that we can
         predict.

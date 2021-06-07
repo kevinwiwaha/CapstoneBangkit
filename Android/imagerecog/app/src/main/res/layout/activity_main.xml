@@ -54,7 +54,7 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="4dp"
                 android:backgroundTint="#1AAE9F"
                 android:text="Pilih Gambar"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -142,15 +142,16 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_width="109dp"
-                android:layout_height="45dp"
-                android:text="camera"
-                app:layout_constraintBottom_toBottomOf="@+id/button2"
-                app:layout_constraintEnd_toStartOf="@+id/button2"
-                app:layout_constraintHorizontal_bias="0.086"
+                android:layout_width="65dp"
+                android:layout_height="41dp"
+                android:backgroundTint="#1AAE9F"
+                android:text="📷"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintHorizontal_bias="0.432"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:layout_constraintVertical_bias="0.931" />
+                app:layout_constraintVertical_bias="0.167" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
