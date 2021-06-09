@@ -120,7 +120,7 @@ To get a local copy up and running follow these simple steps.
 How to use this app :
 1.	Install the app
 2.	Choose any waste pictures you want to classify by pressing the [SELECTFILES] button OR you can take the waste picture using the  camera [📸] button
-3.	Press the [PREDICT] button, and VOILA! The result will appear, (this may take a few seconds to load, so you have to wait a little bit)
+3.	Press the [PREDICT] button, and VOILA!✨ The result will appear, (this may take a few seconds to load, so you have to wait a little bit 😊)
 4.	And if you want to learn more about organic and inorganic waste, press the [AKU MAU BELAJAR!] button!
 
 <!-- _For more examples, please refer to the [Documentation](https://example.com)_ -->
@@ -157,12 +157,12 @@ Distributed under the The MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Aqila Intan Pakerti (M0040212) - [aqilaintan@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Kevin Haffizzana Untoro Wiwaha (M0040210) - [kevinwiwaha@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Rahma Nur Annisa (C0090976) - [rahmanurannisa1@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Fawnia Avissa Nariswari (C0090959) - [fawnianariswari@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Doli Ramadhan (A2212116) - [](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Rafi Indra Permana (A0040207) - [rafiindraper@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Aqila Intan Pakerti (M0040212) - [aqilaintan@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Kevin Haffizzana Untoro Wiwaha (M0040210) - [kevinwiwaha@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Rahma Nur Annisa (C0090976) - [rahmanurannisa1@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Fawnia Avissa Nariswari (C0090959) - [fawnianariswari@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Doli Ramadhan (A2212116) - [](https://mail.google.com/mail/u/0/#inbox?compose=new)
+* Rafi Indra Permana (A0040207) - [rafiindraper@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
 
 Project Link: [https://github.com/kevinwiwaha/CapstoneBangkit](https://github.com/kevinwiwaha/CapstoneBangkit)
 
