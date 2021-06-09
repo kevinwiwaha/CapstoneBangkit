@@ -44,30 +44,29 @@
                 android:layout_height="239dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintHorizontal_bias="0.512"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.295"
+                app:layout_constraintVertical_bias="0.307"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <Button
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="4dp"
                 android:backgroundTint="#1AAE9F"
                 android:text="Pilih Gambar"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
-                app:layout_constraintHorizontal_bias="0.504"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:layout_constraintVertical_bias="0.158" />
+                app:layout_constraintVertical_bias="0.157" />
 
             <Button
                 android:id="@+id/button2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="56dp"
+                android:layout_marginEnd="16dp"
                 android:backgroundTint="#1AAE9F"
                 android:text="prediksi"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -152,6 +151,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView"
                 app:layout_constraintVertical_bias="1.0" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="65dp"
+                android:layout_height="41dp"
+                android:backgroundTint="#1AAE9F"
+                android:text="📷"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintHorizontal_bias="0.432"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"
+                app:layout_constraintVertical_bias="0.167" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

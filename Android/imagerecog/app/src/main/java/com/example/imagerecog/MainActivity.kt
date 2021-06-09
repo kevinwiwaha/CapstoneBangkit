@@ -1,6 +1,7 @@
 package com.example.imagerecog
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.imagerecog.ml.MobilenetV110224Quant
@@ -26,6 +28,7 @@ import java.io.ByteArrayOutputStream
 import java.nio.ByteBuffer
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import java.util.jar.Manifest
 
 
 class MainActivity : AppCompatActivity() {
@@ -41,6 +44,45 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+<<<<<<< HEAD
+=======
+            //bikin button camera
+    val button_camera = findViewById<Button>(R.id.button4)
+    button_camera.setOnClickListener {
+        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(i, 101)
+    }
+
+        /*
+        fungsi camera permission, jika user ngasi ijin kamera
+         */
+
+        button_camera.isEnabled = false
+        if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.CAMERA), 111)
+        }
+        else
+            button_camera.isEnabled = true
+
+
+
+//        fun onRequestPermissionsResult(
+//        requestCode: Int,
+//        permissions: Array<out String>,
+//        grantResults: IntArray
+//    ) {
+//
+//        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+//        if(requestCode === 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+//        {
+//            button_camera.isEnabled = true
+//        }
+//    }
+
+
+
+
+>>>>>>> 06f971d4b723a9d855545b9338ce6aee64172489
         // bikin button buat connect ke next activity
 //        val btnBelajarOgranik = findViewById<Button>(R.id.button3)
 //        btnBelajarOgranik.setOnClickListener {
@@ -71,7 +113,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(next_intent)
         }
 
-        // Get button using its id :
+        // bikin button selectfiles :
         var selectfiles: Button = findViewById(R.id.button)
         // Set OnClickListener
         selectfiles.setOnClickListener(View.OnClickListener {
@@ -79,11 +121,10 @@ class MainActivity : AppCompatActivity() {
             //buat fungsi dari si buttonnya
             var intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "image/*"
-
             startActivityForResult(intent, 100)
 
         })
-        //code for the functionality for the predict button
+        //bikin button predict & code for the functionality for the predict button
         var predict:Button = findViewById(R.id.button2)
 
         predict.setOnClickListener(View.OnClickListener {
@@ -123,7 +164,7 @@ class MainActivity : AppCompatActivity() {
 
 //            RESIZED IMAGE ENCODE BASE64
             val byteArrayOutputStream = ByteArrayOutputStream()
-            resized.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,byteArrayOutputStream)
             val byteArray: ByteArray = byteArrayOutputStream.toByteArray()
             val encoded: String = Base64.encodeToString(byteArray,Base64.DEFAULT)
 
@@ -163,6 +204,9 @@ class MainActivity : AppCompatActivity() {
 
         })
     }
+
+
+
     fun getMax(arr:FloatArray) : Int{
         var ind = 0;
         var min = 0.0f;
@@ -177,19 +221,72 @@ class MainActivity : AppCompatActivity() {
         }
         return ind
     }
+
+//    //bikin button camera
+//    val button_camera = findViewById<Button>(R.id.button4)
+//    button_camera.setOnClickListener {
+//        var i = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//        startActivityForResult(i, 101)
+//    }
+
+
+    var button_camera: Button? = null
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode === 111 && grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
+            button_camera?.isEnabled = true
+        }
+    }
+
+
     // we will see, once the user select the images, change the image view, to the selected
     //  images
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+//        var uri: Uri?= data?.data
 
-        imgview.setImageURI(data?.data)
-        var uri: Uri?= data?.data
+        if (requestCode == 101 && resultCode == RESULT_OK) {
+            val imageBitmap = data?.extras?.get("data") as Bitmap
+//            var uri: Uri?= data?.data
+            imgview.setImageBitmap(imageBitmap)
+            bitmap = imageBitmap
+        } else if(requestCode == 100) {
+            imgview.setImageURI(data?.data)
+            var uri: Uri?= data?.data
+            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+        }
+
+
+
+//        if(requestCode == 101 )
+//        {
+//            imgview.setImageURI(data?.data)
+//            var uri: Uri?= data?.data
+////            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//
+//
+//        }else if(requestCode == 100){
+//            imgview.setImageURI(data?.data)
+//            var uri: Uri?= data?.data
+//            bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+//
+//
+//        }
 
         /* we will store this image to the bitmap, so that we can
         predict.
         jd kita pake mediastore dan getting the bitmap from the Uri
         which is stored in this data variable
         */
-        bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, uri)
+
+
     }
 }
