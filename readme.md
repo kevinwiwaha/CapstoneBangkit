@@ -164,12 +164,12 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Aqila Intan Pakerti (M0040212) - [aqilaintan@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Kevin Haffizzana Untoro Wiwaha (M0040210) - [kevinwiwaha@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Rahma Nur Annisa (C0090976) - [rahmanurannisa1@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Fawnia Avissa Nariswari (C0090959) - [fawnianariswari@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Doli Ramadhan (A2212116) - [](https://mail.google.com/mail/u/0/#inbox?compose=new)
-Rafi Indra Permana (A0040207) - [rafiindraper@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new)
+Aqila Intan Pakerti (M0040212) - [aqilaintan@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new) \
+Kevin Haffizzana Untoro Wiwaha (M0040210) - [kevinwiwaha@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new) \
+Rahma Nur Annisa (C0090976) - [rahmanurannisa1@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new) \
+Fawnia Avissa Nariswari (C0090959) - [fawnianariswari@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new) \
+Doli Ramadhan (A2212116) - [](https://mail.google.com/mail/u/0/#inbox?compose=new) \
+Rafi Indra Permana (A0040207) - [rafiindraper@gmail.com](https://mail.google.com/mail/u/0/#inbox?compose=new) \
 
 Project Link: [https://github.com/kevinwiwaha/CapstoneBangkit](https://github.com/kevinwiwaha/CapstoneBangkit)
 
