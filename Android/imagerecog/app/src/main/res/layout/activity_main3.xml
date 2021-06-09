@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity2">
+    tools:context=".MainActivity3">
 
     <com.google.android.youtube.player.YouTubePlayerView
         android:id="@+id/youtubeplayer"
@@ -14,7 +14,7 @@
         android:layout_height="wrap_content" />
 
 <!--    <Button-->
-<!--        android:id="@+id/btnPlayVidAct2"-->
+<!--        android:id="@+id/btnPlayVidAct3"-->
 <!--        android:layout_width="match_parent"-->
 <!--        android:layout_height="wrap_content"-->
 <!--        android:backgroundTint="#1AAE9F"-->
@@ -23,16 +23,16 @@
 <!--        android:layout_marginRight="70dp"-->
 <!--        android:text="Putar Video"-->
 <!--        android:textColor="#ffffff"-->
-<!--        android:textAllCaps="false"/>-->
+<!--        android:textAllCaps="false" />-->
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
-        android:text="Organik"
+        android:text="Anorganik"
         android:textSize="15pt"
         android:textStyle="bold"/>
 
@@ -41,16 +41,17 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/textView6"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
             android:layout_marginBottom="10dp"
-            android:text="@string/organikEdu"
+            android:text="@string/anorganikEdu"
             android:justificationMode="inter_word"
             android:singleLine="false"/>
     </ScrollView>
 
 
 </LinearLayout>
+

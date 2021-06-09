@@ -33,28 +33,43 @@ class MainActivity : AppCompatActivity() {
     lateinit var bitmap: Bitmap
     lateinit var imgview: ImageView
     lateinit var text_view : TextView
+    lateinit var btnMainActivity2 : Button
+    lateinit var btnMainActivity3 : Button
     private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_main)
-        // bikin button buat connect ke next activity
-        val button_belajar = findViewById<Button>(R.id.button3)
-        button_belajar.setOnClickListener {
-            val next_intent = Intent(this, MainActivity2::class.java)
 
-            startActivity(next_intent)
-        }
+        // bikin button buat connect ke next activity
+//        val btnBelajarOgranik = findViewById<Button>(R.id.button3)
+//        btnBelajarOgranik.setOnClickListener {
+//            val next_intent = Intent(this, MainActivity2::class.java)
+//
+//            startActivity(next_intent)
+//        }
+
+
         //inisialisasi variabelnya imgview ke findViewByid terus kita search
         // resources.id.imageview
         imgview = findViewById(R.id.imageView)
-//            val labels = application.assets.open("labels.txt").bufferedReader().use { it.readText() }.split("\n")
+        btnMainActivity2 = findViewById(R.id.btnMainActivity2)
+        btnMainActivity3 = findViewById(R.id.btnMainActivity3)
+        btnMainActivity2.setVisibility(View.GONE)
+        btnMainActivity3.setVisibility(View.GONE)
+            val labels = application.assets.open("label.txt").bufferedReader().use { it.readText() }.split("\n")
 
         //initialize textview
-        var tv:TextView = findViewById(R.id.textView)
         text_view = findViewById(R.id.textView)
+        btnMainActivity2.setOnClickListener {
+            val next_intent = Intent(this, MainActivity2::class.java)
+            startActivity(next_intent)
+        }
 
+        btnMainActivity3.setOnClickListener {
+            val next_intent = Intent(this, MainActivity3::class.java)
+            startActivity(next_intent)
+        }
 
         // Get button using its id :
         var selectfiles: Button = findViewById(R.id.button)
@@ -79,7 +94,7 @@ class MainActivity : AppCompatActivity() {
             var tbuffer = TensorImage.fromBitmap(resized)
             var byteBuffer = tbuffer.buffer
 
-//// Creates inputs for reference.
+//// Creates inputs for reference. [GA DIPAKE]
 //            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224*2, 224*2, 3), DataType.UINT8)
 //            inputFeature0.loadBuffer(byteBuffer)
 //            Log.d("Tensor",inputFeature0.buffer.toString())
@@ -128,13 +143,17 @@ class MainActivity : AppCompatActivity() {
                 if(response.body.toFloat() > 0.5){
                 var result = "Anorganik"
                 text_view.setText(result)
-                val resultData = Intent(this@MainActivity,MainActivity2::class.java)
+                btnMainActivity3.setVisibility(View.VISIBLE)
+                btnMainActivity2.setVisibility(View.INVISIBLE)
+                val resultData = Intent(this@MainActivity,MainActivity3::class.java)
                     resultData.putExtra("WasteType",result)
 
 
                 }else if(response.body.toFloat() < 0.5){
                     var result = "Organik"
                     text_view.setText(result)
+                    btnMainActivity2.setVisibility(View.VISIBLE)
+                    btnMainActivity3.setVisibility(View.INVISIBLE)
                     val resultData = Intent(this@MainActivity,MainActivity2::class.java)
                     resultData.putExtra("WasteType",result)
 

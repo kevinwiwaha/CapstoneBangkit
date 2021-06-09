@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">Wemo</string>
     <string name="api_key">AIzaSyBWeU7sGaxT1OtjNzeFjHfjLFyTcgfYSaE</string>
+    <string name="organikEdu">
+        \t Sampah organik merupakan sampah yang dapat membusuk atau dapat terurai kembali dengan bantuan bakteri lain. Sampah organik bisa dimanfaatkan sebagai pupuk kompos dan biogas. Sampah organik termasuk sampah yang mudah dimanfaatkan kembali dan tidak berbahaya bagi bumi.\n Namun, sampah organik yang tidak dirawat juga dapat menyebabkan gangguan lingkungan berupa munculnya bau tidak sedap yang menggangu kenyamanan masyarakat sekitar dan menyebabkan lingkungan terlihat kumuh.\n Oleh karena itu, meskipun dapat terurai dengan mudah, sampah organik juga perlu diperhatikan dengan baik.\n\n
+        Sampah organik dapat diolah menjadi beberapa produk lain yang lebih bermanfaat seperti:\n
+        a. Kompos organik.\n
+        b. Pengganti gas LPG untuk memasak.\n
+        c. Pemanfaatan sisa sayuran untuk pakan ternak.\n
+    </string>
+    <string name="anorganikEdu">
+        \t Sampah yang tidak bisa terurai oleh tanah disebut dengan sampah anorganik atau sampah non organik. Sampah anorganik adalah sampah yang berasal dari sisa manusia yang sulit diurai oleh bakteri sehingga membutuhkan waktu yang cukup lama untuk dapat diuraikan. Sifat sampah anorganik yang susah terurai tersebut menyebabkan berbagai masalah karena beberapa sampah akan terurai dalam jangka waktu ratusan tahun, sedangkan jumlah sampah tersebut semakin bertambah setiap harinya.\n\n
+        Sampah anorganik dapat diatasi dengan:\n
+        <b>a. Metode 3R (Reduce, Reuse, Recycle)</b>\n
+            <b>1. Reduce</b>\n
+            \t\t Reduce adalah metode untuk mengurangi produksi sampah masyarakat dengan mengurangi bahan atau barang dalam kehidupan sehari-hari. Meskipun tidak dapat menghilangkan sampah, namun metode ini sasngat bermanfaat untuk mengontrol produksi sampah setiap harinya.\n
+            <b>2. Reuse</b>\n
+            \t\t Reuse adalah menggunakan kembali barang atau bahan yang masih dapat dimanfaatkan sehingga tidak perlu membeli barang baru untuk penggunaan barang yang sama. Misalnya pemanfaatan koran bekas sebagai bungkus makanan.\n
+            <b>3. Recycle</b>\n
+            \t\t Recycle adalah metode untuk mmengolah sampah agar dapat didaur ulang menjadi barang lain. Prinsip bank sampah hamper mirip dengan metode ini, yaitu mengolah sampah mereka jadi barang baru yang bernilai ekonomis.\n\n
+        <b>b. Bank Sampah</b>\n
+           \t\t Prinsip Bank Sampah yaitu dengan cara mengumpulkan sampah yang masih dapat dimanfaatkan menjadi produk lain, misalnya hiasan rumah. Sampah yang disetorkan adalah sampah yang mempunyai nilai ekonomis. Bank Sampah sebaiknya dikelola oleh orang yang kreatif, inovatif, serta memiliki jiwa kewirausahaan, agar dapat meningkatkan pendapatan masyarakat yang mengikuti Bank Sampah tersebut.
+    </string>
 </resources>

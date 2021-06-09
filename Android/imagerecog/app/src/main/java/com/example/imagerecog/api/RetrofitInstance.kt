@@ -8,7 +8,7 @@ object RetrofitInstance {
 
     private val retrofit by lazy {
         Retrofit.Builder()
-            .baseUrl("http://38c1494c3c0a.ngrok.io")
+            .baseUrl("https://wemo-server-fsngx4umpq-et.a.run.app")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
