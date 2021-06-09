@@ -1,0 +1,6 @@
+List2 Sampah :
+1. Sampah Plastik
+2. Sampah Botol
+3. Sampah Kertas
+4. Sampah Organik
+5. Sampah Anorganik
