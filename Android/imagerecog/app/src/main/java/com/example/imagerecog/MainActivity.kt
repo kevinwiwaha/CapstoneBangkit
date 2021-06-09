@@ -16,9 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.imagerecog.ml.MobilenetV110224Quant
-import com.example.imagerecog.ml.MobilenetV210224Quant
-import com.example.imagerecog.ml.Model
+
 import com.example.imagerecog.model.Post
 import com.example.imagerecog.repository.Repository
 import org.tensorflow.lite.DataType
@@ -128,38 +126,7 @@ class MainActivity : AppCompatActivity() {
 
         predict.setOnClickListener(View.OnClickListener {
             var resized = Bitmap.createScaledBitmap(bitmap, 200, 200, true)
-//            val model = MobilenetV110224Quant.newInstance(this)
-            val model = Model.newInstance(this)
-//            val model = MobilenetV210224Quant.newInstance(this)
-            var tbuffer = TensorImage.fromBitmap(resized)
-            var byteBuffer = tbuffer.buffer
 
-//// Creates inputs for reference. [GA DIPAKE]
-//            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224*2, 224*2, 3), DataType.UINT8)
-//            inputFeature0.loadBuffer(byteBuffer)
-//            Log.d("Tensor",inputFeature0.buffer.toString())
-//// Runs model inference and gets result.
-//            val outputs = model.process(inputFeature0)
-//            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
-//
-//            println(outputFeature0.floatArray[0])
-////            var max = getMax(outputFeature0.floatArray)
-////            Log.d("MAX",max.toString())
-//            if(outputFeature0.floatArray[0] > 0.5){
-//                var result = "Anorganik"
-//                text_view.setText(result)
-//                val resultData = Intent(this@MainActivity,MainActivity2::class.java)
-//                resultData.putExtra("WasteType",result)
-//                startActivity(resultData)
-//
-//            }else if(outputFeature0.floatArray[0] < 0.5){
-//                var result = "Organik"
-//                text_view.setText(result)
-//
-//            }
-//
-//// Releases model resources if no longer used.
-//            model.close()
 
 //            RESIZED IMAGE ENCODE BASE64
             val byteArrayOutputStream = ByteArrayOutputStream()
