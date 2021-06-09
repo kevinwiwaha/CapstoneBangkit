@@ -44,8 +44,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-<<<<<<< HEAD
-=======
+
             //bikin button camera
     val button_camera = findViewById<Button>(R.id.button4)
     button_camera.setOnClickListener {
@@ -82,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
->>>>>>> 06f971d4b723a9d855545b9338ce6aee64172489
+
         // bikin button buat connect ke next activity
 //        val btnBelajarOgranik = findViewById<Button>(R.id.button3)
 //        btnBelajarOgranik.setOnClickListener {
